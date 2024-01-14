@@ -11,22 +11,35 @@ const btnRoll = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
 const currentEl0 = document.getElementById('current--0');
 
-const scores = [0, 0];
-let curentScore = 0;
-let activePlayer = 0;
-let playing = true;
-
-scoreEl0.textContent = 0;
-scoreEl1.textContent = 0;
-diceEl.classList.add('hidden');
+let scores, currentScore, activePlayer, playing;
 
 const switchPlayer = function () {
   document.getElementById(`current--${activePlayer}`).textContent = 0;
   activePlayer = activePlayer === 0 ? 1 : 0;
-  curentScore = 0;
+  currentScore = 0;
   player0.classList.toggle('player--active');
   player1.classList.toggle('player--active');
 };
+
+const init = function () {
+  scores = [0, 0];
+  currentScore = 0;
+  activePlayer = 0;
+  playing = true;
+
+  scoreEl0.textContent = 0;
+  scoreEl1.textContent = 0;
+  document.getElementById('current--0').textContent = 0;
+  document.getElementById('current--1').textContent = 0;
+
+  player0.classList.remove('player--winner');
+  player1.classList.remove('player--winner');
+  player0.classList.add('player--active');
+  player1.classList.remove('player--active');
+  diceEl.classList.add('hidden');
+};
+
+init();
 
 // Rolling dice functionality
 btnRoll.addEventListener('click', function () {
@@ -35,9 +48,9 @@ btnRoll.addEventListener('click', function () {
     diceEl.classList.remove('hidden');
     diceEl.src = `images/dice-${dice}.png`;
     if (dice !== 1) {
-      curentScore += dice;
+      currentScore += dice;
       document.getElementById(`current--${activePlayer}`).textContent =
-        curentScore;
+        currentScore;
     } else {
       switchPlayer();
     }
@@ -47,11 +60,11 @@ btnRoll.addEventListener('click', function () {
 // Holding score functionality
 btnHold.addEventListener('click', function () {
   if (playing) {
-    scores[activePlayer] += curentScore;
+    scores[activePlayer] += currentScore;
     document.getElementById(`current--${activePlayer}`).textContent = 0;
     document.getElementById(`score--${activePlayer}`).textContent =
       scores[activePlayer];
-    if (scores[activePlayer] >= 20) {
+    if (scores[activePlayer] >= 100) {
       playing = false;
       diceEl.classList.add('hidden');
       document
@@ -65,3 +78,5 @@ btnHold.addEventListener('click', function () {
     }
   }
 });
+
+btnNew.addEventListener('click', init);
