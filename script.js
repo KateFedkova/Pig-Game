@@ -19,6 +19,14 @@ scoreEl0.textContent = 0;
 scoreEl1.textContent = 0;
 diceEl.classList.add('hidden');
 
+const switchPlayer = function () {
+  document.getElementById(`current--${activePlayer}`).textContent = 0;
+  activePlayer = activePlayer === 0 ? 1 : 0;
+  curentScore = 0;
+  player0.classList.toggle('player--active');
+  player1.classList.toggle('player--active');
+};
+
 // Rolling dice functionality
 btnRoll.addEventListener('click', function () {
   const dice = Math.trunc(Math.random() * 6) + 1;
@@ -29,10 +37,6 @@ btnRoll.addEventListener('click', function () {
     document.getElementById(`current--${activePlayer}`).textContent =
       curentScore;
   } else {
-    document.getElementById(`current--${activePlayer}`).textContent = 0;
-    activePlayer = activePlayer === 0 ? 1 : 0;
-    curentScore = 0;
-    player0.classList.toggle('player--active');
-    player1.classList.toggle('player--active');
+    switchPlayer();
   }
 });
