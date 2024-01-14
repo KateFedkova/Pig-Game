@@ -14,6 +14,7 @@ const currentEl0 = document.getElementById('current--0');
 const scores = [0, 0];
 let curentScore = 0;
 let activePlayer = 0;
+let playing = true;
 
 scoreEl0.textContent = 0;
 scoreEl1.textContent = 0;
@@ -29,32 +30,38 @@ const switchPlayer = function () {
 
 // Rolling dice functionality
 btnRoll.addEventListener('click', function () {
-  const dice = Math.trunc(Math.random() * 6) + 1;
-  diceEl.classList.remove('hidden');
-  diceEl.src = `images/dice-${dice}.png`;
-  if (dice !== 1) {
-    curentScore += dice;
-    document.getElementById(`current--${activePlayer}`).textContent =
-      curentScore;
-  } else {
-    switchPlayer();
+  if (playing) {
+    const dice = Math.trunc(Math.random() * 6) + 1;
+    diceEl.classList.remove('hidden');
+    diceEl.src = `images/dice-${dice}.png`;
+    if (dice !== 1) {
+      curentScore += dice;
+      document.getElementById(`current--${activePlayer}`).textContent =
+        curentScore;
+    } else {
+      switchPlayer();
+    }
   }
 });
 
 // Holding score functionality
 btnHold.addEventListener('click', function () {
-  scores[activePlayer] += curentScore;
-  document.getElementById(`current--${activePlayer}`).textContent = 0;
-  document.getElementById(`score--${activePlayer}`).textContent =
-    scores[activePlayer];
-  if (scores[activePlayer] >= 20) {
-    document
-      .querySelector(`.player--${activePlayer}`)
-      .classList.add('player--winner');
-    document
-      .querySelector(`.player--${activePlayer}`)
-      .classList.remove('player--active');
-  } else {
-    switchPlayer();
+  if (playing) {
+    scores[activePlayer] += curentScore;
+    document.getElementById(`current--${activePlayer}`).textContent = 0;
+    document.getElementById(`score--${activePlayer}`).textContent =
+      scores[activePlayer];
+    if (scores[activePlayer] >= 20) {
+      playing = false;
+      diceEl.classList.add('hidden');
+      document
+        .querySelector(`.player--${activePlayer}`)
+        .classList.add('player--winner');
+      document
+        .querySelector(`.player--${activePlayer}`)
+        .classList.remove('player--active');
+    } else {
+      switchPlayer();
+    }
   }
 });
