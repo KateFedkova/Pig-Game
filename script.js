@@ -40,3 +40,21 @@ btnRoll.addEventListener('click', function () {
     switchPlayer();
   }
 });
+
+// Holding score functionality
+btnHold.addEventListener('click', function () {
+  scores[activePlayer] += curentScore;
+  document.getElementById(`current--${activePlayer}`).textContent = 0;
+  document.getElementById(`score--${activePlayer}`).textContent =
+    scores[activePlayer];
+  if (scores[activePlayer] >= 20) {
+    document
+      .querySelector(`.player--${activePlayer}`)
+      .classList.add('player--winner');
+    document
+      .querySelector(`.player--${activePlayer}`)
+      .classList.remove('player--active');
+  } else {
+    switchPlayer();
+  }
+});
