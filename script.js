@@ -10,6 +10,7 @@ const btnNew = document.querySelector('.btn--new');
 const btnRoll = document.querySelector('.btn--roll');
 const btnHold = document.querySelector('.btn--hold');
 const currentEl0 = document.getElementById('current--0');
+const currentEl1 = document.getElementById('current--1');
 
 let scores, currentScore, activePlayer, playing;
 
@@ -29,8 +30,8 @@ const init = function () {
 
   scoreEl0.textContent = 0;
   scoreEl1.textContent = 0;
-  document.getElementById('current--0').textContent = 0;
-  document.getElementById('current--1').textContent = 0;
+  currentEl0.textContent = 0;
+  currentEl1.textContent = 0;
 
   player0.classList.remove('player--winner');
   player1.classList.remove('player--winner');
