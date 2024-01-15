@@ -15,8 +15,8 @@ body {
   font-family: 'Nunito', sans-serif;
   font-weight: 400;
   height: 100vh;
-  color: #333;
-  background-image: linear-gradient(to top left, #753682 0%, #bf2e34 100%);
+  color: #404040;
+  background-image: linear-gradient(to top left, #ffffff 0%, #e0e0e0 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -50,7 +50,7 @@ main {
   position: relative;
   font-size: 4rem;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
   word-spacing: 2px;
   font-weight: 300;
   margin-bottom: 1rem;
@@ -60,6 +60,8 @@ main {
   font-size: 8rem;
   font-weight: 300;
   color: #c7365f;
+  color: goldenrod;
+
   margin-bottom: auto;
 }
 
@@ -67,7 +69,7 @@ main {
   background-color: rgba(255, 255, 255, 0.4);
 }
 .player--active .name {
-  font-weight: 700;
+  font-weight: 600;
 }
 .player--active .score {
   font-weight: 400;
@@ -78,7 +80,7 @@ main {
 }
 
 .current {
-  background-color: #c7365f;
+  background-color: rgb(209, 160, 36);
   opacity: 0.8;
   border-radius: 9px;
   color: #fff;
